@@ -1,20 +1,21 @@
-.app{
+.app {
   background-color: rgba(7, 104, 143, 0.548);
   height: 100vh;
   width: 100vw;
-
 }
-.monsterscontainer{
+.monsterscontainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: blue;
+  background-color: rgba(7, 104, 143, 0.548);
 }
-.monsterscollection{
+.monsterscollection {
   padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
- justify-content: center;
+  justify-content: center;
   flex-wrap: wrap;
+ 
+ 
 }

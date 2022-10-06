@@ -6,31 +6,30 @@ const BASEURL = `https://pokeapi.co/api/v2/pokemon`;
 
 function App() {
   const [monsters, setMonsters] = useState([]);
+  let data = [];
 
   async function getPokemonDetails(singlePokemon) {
-    let data=[]
-    const res = await fetch(`${BASEURL}/${singlePokemon.name}`);
-    const resResults = await res.json();
-
+    const newRes = await fetch(`${BASEURL}/${singlePokemon.name}`);
+    const results = await newRes.json();
     const pokemonData = {
-      pokemon: singlePokemon.name,
+      id: results.id,
+      pokemon: results.name,
+      height: results.height,
+      weight: results.weight,
+      baseExperience: results.base_experience,
+      sprite:results.sprites
     };
-
-    
-
-    setMonsters(data)
-    
+    setMonsters((monsters) => [...monsters, pokemonData]);
   }
 
-  async function getPokemonList(callback) {
-    let monster = [];
+  async function getPokemonList() {
     const response = await fetch(`${BASEURL}?limit=20`);
     const resResults = await response.json();
     const { results } = resResults;
     if (results.length > 0) {
       results.map(getPokemonDetails);
     } else {
-      console.log("NO POKEMON FOUND");
+      console.log("NO POKEMON WAS FOUND");
     }
   }
 
@@ -43,8 +42,7 @@ function App() {
       <div className="monsterscontainer">
         <div className="monsterscollection">
           {monsters.map((monster) => {
-            console.log(monsters)
-            return <PokemonThumb monsterObj={monster} key={monster.pokemon} />;
+            return <PokemonThumb monsterObj={monster} key={monster.id} />;
           })}
         </div>
       </div>
