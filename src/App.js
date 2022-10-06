@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import PokemonThumb from "./Components/PokemonThumb";
+import { getRandomColor } from "./Utils/getRandomColor";
 
 const BASEURL = `https://pokeapi.co/api/v2/pokemon`;
 
@@ -17,7 +18,8 @@ function App() {
       height: results.height,
       weight: results.weight,
       baseExperience: results.base_experience,
-      sprite:results.sprites
+      sprite:results.sprites,
+      bgColor:getRandomColor()
     };
     setMonsters((monsters) => [...monsters, pokemonData]);
   }

@@ -9,7 +9,7 @@ function PokemonThumb({ monsterObj }) {
       style={{
         height: 300,
         width: 200,
-        backgroundColor: "#ffffff",
+        backgroundColor: `${monsterObj.bgColor}`,
         marginRight: 10,
         display: "flex",
         justifyContent: "center",
@@ -18,7 +18,8 @@ function PokemonThumb({ monsterObj }) {
         borderRadius: "10px",
         marginBottom: "10px",
         boxShadow: "10px 11px 5px -3px rgba(0, 0, 0, 0.49)",
-        cursor:"pointer"
+        cursor:"pointer",
+        color:"#fff"
       }}
     >
         <img style={{
