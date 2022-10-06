@@ -41,7 +41,7 @@ function App() {
     <div className="app">
       <div className="monsterscontainer">
         <div className="monsterscollection">
-          {monsters.map((monster) => {
+          {monsters.sort(monster=>monster.id-monster.id).map((monster) => {
             return <PokemonThumb monsterObj={monster} key={monster.id} />;
           })}
         </div>

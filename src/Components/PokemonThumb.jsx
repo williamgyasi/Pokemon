@@ -2,7 +2,8 @@ import React from "react";
 
 function PokemonThumb({ monsterObj }) {
     console.log(monsterObj)
-    const imageS
+    const {other}=monsterObj.sprite
+    const defaultImage=other["official-artwork"].front_default
   return (
     <div
       style={{
@@ -16,11 +17,18 @@ function PokemonThumb({ monsterObj }) {
         flexDirection: "column",
         borderRadius: "10px",
         marginBottom: "10px",
-        boxShadow: "10px 11px 5px -3px rgba(0, 0, 0, 0.49)"
+        boxShadow: "10px 11px 5px -3px rgba(0, 0, 0, 0.49)",
+        cursor:"pointer"
       }}
     >
-        <img />
-      <h4>{monsterObj.pokemon.toUpperCase()}</h4>
+        <img style={{
+            height:"150px",
+            width:"150px"
+        }} src={defaultImage} />
+      <h4 style={{
+        marginTop:"10px",
+        letterSpacing:"1px"
+      }}>{monsterObj.pokemon.toUpperCase()}</h4>
     </div>
   );
 }
