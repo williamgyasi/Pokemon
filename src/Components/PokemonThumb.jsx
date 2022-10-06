@@ -25,7 +25,7 @@ function PokemonThumb({ monsterObj }) {
         <img style={{
             height:"150px",
             width:"150px"
-        }} src={defaultImage} />
+        }} alt="Monters Image" src={defaultImage} />
       <h4 style={{
         marginTop:"10px",
         letterSpacing:"1px"
