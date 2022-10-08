@@ -2,11 +2,13 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import PokemonThumb from "./Components/PokemonThumb";
 import { getRandomColor } from "./Utils/getRandomColor";
+import SearchBox from "./Components/SearchBox";
 
 const BASEURL = `https://pokeapi.co/api/v2/pokemon`;
 
 function App() {
   const [monsters, setMonsters] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   let data = [];
 
   async function getPokemonDetails(singlePokemon) {
@@ -18,8 +20,8 @@ function App() {
       height: results.height,
       weight: results.weight,
       baseExperience: results.base_experience,
-      sprite:results.sprites,
-      bgColor:getRandomColor()
+      sprite: results.sprites,
+      bgColor: getRandomColor(),
     };
     setMonsters((monsters) => [...monsters, pokemonData]);
   }
@@ -35,17 +37,33 @@ function App() {
     }
   }
 
+  function onChange(e) {
+    if (e.target.value) {
+      let filtered = monsters.filter((item) =>
+        item.pokemon.toUpperCase().includes(e.target.value.toUpperCase())
+      );
+      setMonsters(filtered);
+    } else {
+      console.log("not")
+      setMonsters(monsters);
+    }
+  }
+
   useEffect(() => {
     getPokemonList();
   }, []);
 
   return (
     <div className="app">
+      <h3>WELCOME TO POKEMON GO</h3>
+      <SearchBox onChange={onChange} searchTerm={searchTerm} />
       <div className="monsterscontainer">
         <div className="monsterscollection">
-          {monsters.sort(monster=>monster.id-monster.id).map((monster) => {
-            return <PokemonThumb monsterObj={monster} key={monster.id} />;
-          })}
+          {monsters
+            .sort((monster) => monster.id - monster.id)
+            .map((monster) => {
+              return <PokemonThumb monsterObj={monster} key={monster.id} />;
+            })}
         </div>
       </div>
     </div>
